@@ -5,7 +5,7 @@ import DataInputForm from './common/DataInputForm'
 import DataPreview from './common/DataPreview'
 import ResultCard from './common/ResultCard'
 import { calculateSPK } from '../utils/spkEngine'
-import { PETANI_CRITERIA, PETANI_DEFAULT_WEIGHTS } from '../utils/constants'
+import { PETANI_CRITERIA, PETANI_DEFAULT_WEIGHTS, SAMPLE_BUYERS } from '../utils/constants'
 import './SPKPageOptimized.css'
 
 function PetaniPage() {
@@ -15,6 +15,8 @@ function PetaniPage() {
   const [showResults, setShowResults] = useState(false)
   const [results, setResults] = useState(null)
   const [isCalculating, setIsCalculating] = useState(false)
+  const [sampleDataLoaded, setSampleDataLoaded] = useState(false)
+  const [selectedBuyerDetails, setSelectedBuyerDetails] = useState(null)
 
   const handleAddBuyer = (buyerData) => {
     setBuyers([...buyers, { id: Date.now(), ...buyerData }])
@@ -49,6 +51,20 @@ function PetaniPage() {
     setResults(null)
   }
 
+  const loadSampleData = () => {
+    const sampleBuyersWithIds = SAMPLE_BUYERS.map((buyer, index) => ({
+      ...buyer,
+      id: Date.now() + index,
+      isSample: true
+    }))
+    setBuyers(sampleBuyersWithIds)
+    setSampleDataLoaded(true)
+  }
+
+  const handleViewDetails = (buyer) => {
+    setSelectedBuyerDetails(buyer)
+  }
+
   return (
     <div className="spk-container">
       <header className="spk-header">
@@ -69,16 +85,46 @@ function PetaniPage() {
               userType="petani"
             />
             
+            {!sampleDataLoaded && buyers.length === 0 && (
+              <div className="sample-data-section">
+                <p className="sample-data-info">
+                  Untuk demonstrasi prototype, Anda dapat memuat data pembeli contoh:
+                </p>
+                <button 
+                  className="load-sample-button"
+                  onClick={loadSampleData}
+                >
+                  📊 Muat Data Contoh (4 Pembeli)
+                </button>
+              </div>
+            )}
+            
             {buyers.length > 0 && (
               <div className="added-buyers">
                 <h3>Pembeli yang ditambahkan ({buyers.length})</h3>
                 <div className="buyer-list">
                   {buyers.map(buyer => (
-                    <div key={buyer.id} className="buyer-item">
-                      <span>{buyer.name}</span>
-                      <button onClick={() => handleRemoveBuyer(buyer.id)}>
-                        Hapus
-                      </button>
+                    <div key={buyer.id} className={`buyer-item ${buyer.isSample ? 'sample-data' : ''}`}>
+                      <div className="buyer-info">
+                        <span className="buyer-name">{buyer.name}</span>
+                        {buyer.isSample && <span className="sample-badge">Data Contoh</span>}
+                      </div>
+                      <div className="buyer-actions">
+                        {buyer.details && (
+                          <button 
+                            className="view-details-btn"
+                            onClick={() => handleViewDetails(buyer)}
+                          >
+                            👁️ Detail
+                          </button>
+                        )}
+                        <button 
+                          className="remove-btn"
+                          onClick={() => handleRemoveBuyer(buyer.id)}
+                        >
+                          Hapus
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -187,6 +233,89 @@ function PetaniPage() {
             </button>
           </div>
         </section>
+      )}
+      
+      {selectedBuyerDetails && (
+        <div className="details-modal-overlay" onClick={() => setSelectedBuyerDetails(null)}>
+          <div className="details-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>Detail Pembeli</h3>
+              <button 
+                className="close-modal-btn"
+                onClick={() => setSelectedBuyerDetails(null)}
+              >
+                ✕
+              </button>
+            </div>
+            
+            <div className="modal-content">
+              <div className="detail-section">
+                <h4>{selectedBuyerDetails.name}</h4>
+                {selectedBuyerDetails.description && (
+                  <p className="buyer-description">{selectedBuyerDetails.description}</p>
+                )}
+              </div>
+              
+              <div className="detail-section">
+                <h5>Kriteria Penilaian:</h5>
+                <div className="criteria-details">
+                  <div className="detail-item">
+                    <span className="detail-label">Stabilitas Harga:</span>
+                    <span className="detail-value">{selectedBuyerDetails.stabilitas}%</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Kredibilitas Pembayaran:</span>
+                    <span className="detail-value">{selectedBuyerDetails.kredibilitas}/10</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Volume Pembelian:</span>
+                    <span className="detail-value">{selectedBuyerDetails.volume} kg/bulan</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Jarak Lokasi:</span>
+                    <span className="detail-value">{selectedBuyerDetails.jarak} km</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Transparansi Harga:</span>
+                    <span className="detail-value">{selectedBuyerDetails.transparansi}/10</span>
+                  </div>
+                </div>
+              </div>
+              
+              {selectedBuyerDetails.details && (
+                <div className="detail-section">
+                  <h5>Informasi Tambahan:</h5>
+                  <div className="additional-details">
+                    {selectedBuyerDetails.details.alamat && (
+                      <div className="detail-item">
+                        <span className="detail-label">📍 Alamat:</span>
+                        <span className="detail-value">{selectedBuyerDetails.details.alamat}</span>
+                      </div>
+                    )}
+                    {selectedBuyerDetails.details.kontrak && (
+                      <div className="detail-item">
+                        <span className="detail-label">📄 Kontrak:</span>
+                        <span className="detail-value">{selectedBuyerDetails.details.kontrak}</span>
+                      </div>
+                    )}
+                    {selectedBuyerDetails.details.pembayaran && (
+                      <div className="detail-item">
+                        <span className="detail-label">💳 Pembayaran:</span>
+                        <span className="detail-value">{selectedBuyerDetails.details.pembayaran}</span>
+                      </div>
+                    )}
+                    {selectedBuyerDetails.details.pengalaman && (
+                      <div className="detail-item">
+                        <span className="detail-label">🏆 Pengalaman:</span>
+                        <span className="detail-value">{selectedBuyerDetails.details.pengalaman}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       )}
     </div>
   )

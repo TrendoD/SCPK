@@ -5,7 +5,7 @@ import DataInputForm from './common/DataInputForm'
 import DataPreview from './common/DataPreview'
 import ResultCard from './common/ResultCard'
 import { calculateSPK } from '../utils/spkEngine'
-import { PEDAGANG_CRITERIA, PEDAGANG_DEFAULT_WEIGHTS } from '../utils/constants'
+import { PEDAGANG_CRITERIA, PEDAGANG_DEFAULT_WEIGHTS, SAMPLE_SUPPLIERS } from '../utils/constants'
 import './SPKPageOptimized.css'
 
 function PedagangPage() {
@@ -15,6 +15,8 @@ function PedagangPage() {
   const [showResults, setShowResults] = useState(false)
   const [results, setResults] = useState(null)
   const [isCalculating, setIsCalculating] = useState(false)
+  const [sampleDataLoaded, setSampleDataLoaded] = useState(false)
+  const [selectedSupplierDetails, setSelectedSupplierDetails] = useState(null)
 
   const handleAddSupplier = (supplierData) => {
     setSuppliers([...suppliers, { id: Date.now(), ...supplierData }])
@@ -49,6 +51,20 @@ function PedagangPage() {
     setResults(null)
   }
 
+  const loadSampleData = () => {
+    const sampleSuppliersWithIds = SAMPLE_SUPPLIERS.map((supplier, index) => ({
+      ...supplier,
+      id: Date.now() + index,
+      isSample: true
+    }))
+    setSuppliers(sampleSuppliersWithIds)
+    setSampleDataLoaded(true)
+  }
+
+  const handleViewDetails = (supplier) => {
+    setSelectedSupplierDetails(supplier)
+  }
+
   return (
     <div className="spk-container">
       <header className="spk-header pedagang-header">
@@ -69,16 +85,46 @@ function PedagangPage() {
               userType="pedagang"
             />
             
+            {!sampleDataLoaded && suppliers.length === 0 && (
+              <div className="sample-data-section">
+                <p className="sample-data-info">
+                  Untuk demonstrasi prototype, Anda dapat memuat data supplier contoh:
+                </p>
+                <button 
+                  className="load-sample-button"
+                  onClick={loadSampleData}
+                >
+                  📊 Muat Data Contoh (4 Supplier)
+                </button>
+              </div>
+            )}
+            
             {suppliers.length > 0 && (
               <div className="added-buyers">
                 <h3>Supplier yang ditambahkan ({suppliers.length})</h3>
                 <div className="buyer-list">
                   {suppliers.map(supplier => (
-                    <div key={supplier.id} className="buyer-item">
-                      <span>{supplier.name}</span>
-                      <button onClick={() => handleRemoveSupplier(supplier.id)}>
-                        Hapus
-                      </button>
+                    <div key={supplier.id} className={`buyer-item ${supplier.isSample ? 'sample-data' : ''}`}>
+                      <div className="buyer-info">
+                        <span className="buyer-name">{supplier.name}</span>
+                        {supplier.isSample && <span className="sample-badge">Data Contoh</span>}
+                      </div>
+                      <div className="buyer-actions">
+                        {supplier.details && (
+                          <button 
+                            className="view-details-btn"
+                            onClick={() => handleViewDetails(supplier)}
+                          >
+                            👁️ Detail
+                          </button>
+                        )}
+                        <button 
+                          className="remove-btn"
+                          onClick={() => handleRemoveSupplier(supplier.id)}
+                        >
+                          Hapus
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -187,6 +233,89 @@ function PedagangPage() {
             </button>
           </div>
         </section>
+      )}
+      
+      {selectedSupplierDetails && (
+        <div className="details-modal-overlay" onClick={() => setSelectedSupplierDetails(null)}>
+          <div className="details-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>Detail Supplier</h3>
+              <button 
+                className="close-modal-btn"
+                onClick={() => setSelectedSupplierDetails(null)}
+              >
+                ✕
+              </button>
+            </div>
+            
+            <div className="modal-content">
+              <div className="detail-section">
+                <h4>{selectedSupplierDetails.name}</h4>
+                {selectedSupplierDetails.description && (
+                  <p className="buyer-description">{selectedSupplierDetails.description}</p>
+                )}
+              </div>
+              
+              <div className="detail-section">
+                <h5>Kriteria Penilaian:</h5>
+                <div className="criteria-details">
+                  <div className="detail-item">
+                    <span className="detail-label">Konsistensi Kualitas:</span>
+                    <span className="detail-value">{selectedSupplierDetails.konsistensi} grade</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Reliabilitas Supply:</span>
+                    <span className="detail-value">{selectedSupplierDetails.reliabilitas}/10</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Harga Kompetitif:</span>
+                    <span className="detail-value">Rp {selectedSupplierDetails.harga.toLocaleString('id-ID')}/kg</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Kapasitas Produksi:</span>
+                    <span className="detail-value">{selectedSupplierDetails.kapasitas} ton/bulan</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Adopsi Teknologi:</span>
+                    <span className="detail-value">{selectedSupplierDetails.teknologi}/10</span>
+                  </div>
+                </div>
+              </div>
+              
+              {selectedSupplierDetails.details && (
+                <div className="detail-section">
+                  <h5>Informasi Tambahan:</h5>
+                  <div className="additional-details">
+                    {selectedSupplierDetails.details.lokasi && (
+                      <div className="detail-item">
+                        <span className="detail-label">📍 Lokasi:</span>
+                        <span className="detail-value">{selectedSupplierDetails.details.lokasi}</span>
+                      </div>
+                    )}
+                    {selectedSupplierDetails.details.sertifikasi && (
+                      <div className="detail-item">
+                        <span className="detail-label">📜 Sertifikasi:</span>
+                        <span className="detail-value">{selectedSupplierDetails.details.sertifikasi}</span>
+                      </div>
+                    )}
+                    {selectedSupplierDetails.details.metode && (
+                      <div className="detail-item">
+                        <span className="detail-label">🌾 Metode:</span>
+                        <span className="detail-value">{selectedSupplierDetails.details.metode}</span>
+                      </div>
+                    )}
+                    {selectedSupplierDetails.details.pengalaman && (
+                      <div className="detail-item">
+                        <span className="detail-label">🏆 Pengalaman:</span>
+                        <span className="detail-value">{selectedSupplierDetails.details.pengalaman}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       )}
     </div>
   )

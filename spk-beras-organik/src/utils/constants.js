@@ -162,3 +162,130 @@ export const WEIGHT_PRESETS = {
     }
   }
 }
+
+// Sample data for prototype demonstration
+export const SAMPLE_BUYERS = [
+  {
+    name: 'Distributor Regional PT Beras Sejahtera',
+    stabilitas: 8.5,
+    kredibilitas: 9,
+    volume: 5000,
+    jarak: 45,
+    transparansi: 8,
+    description: 'Perusahaan distribusi skala besar dengan jaringan luas di Jawa Barat',
+    details: {
+      alamat: 'Jl. Industri No. 123, Bandung',
+      kontrak: 'Kontrak jangka panjang 12 bulan',
+      pembayaran: 'Transfer bank H+7',
+      pengalaman: '15 tahun di industri beras organik'
+    }
+  },
+  {
+    name: 'Pedagang Pasar Tradisional Pak Joko',
+    stabilitas: 18.2,
+    kredibilitas: 6,
+    volume: 800,
+    jarak: 12,
+    transparansi: 5,
+    description: 'Pedagang di Pasar Induk Caringin dengan pelanggan tetap',
+    details: {
+      alamat: 'Pasar Induk Caringin Blok B-12',
+      kontrak: 'Pembelian rutin mingguan',
+      pembayaran: 'Cash on delivery',
+      pengalaman: '8 tahun berdagang beras'
+    }
+  },
+  {
+    name: 'Retailer Modern - SuperFresh Mart',
+    stabilitas: 12.3,
+    kredibilitas: 8,
+    volume: 2000,
+    jarak: 25,
+    transparansi: 7,
+    description: 'Jaringan supermarket dengan 5 cabang di kota',
+    details: {
+      alamat: 'Jl. Merdeka No. 45, Bogor',
+      kontrak: 'Kontrak 6 bulan dengan review berkala',
+      pembayaran: 'Transfer H+14',
+      pengalaman: '10 tahun fokus produk organik'
+    }
+  },
+  {
+    name: 'Platform E-commerce OrganikKu',
+    stabilitas: 15.7,
+    kredibilitas: 7,
+    volume: 1500,
+    jarak: 35,
+    transparansi: 9,
+    description: 'Marketplace online khusus produk organik',
+    details: {
+      alamat: 'Virtual/Online - Gudang di Depok',
+      kontrak: 'Kerjasama konsinyasi',
+      pembayaran: 'Escrow system H+3',
+      pengalaman: '5 tahun platform e-commerce'
+    }
+  }
+]
+
+export const SAMPLE_SUPPLIERS = [
+  {
+    name: 'Petani Individu - Pak Suryadi',
+    konsistensi: 3.2,
+    reliabilitas: 6,
+    harga: 18000,
+    kapasitas: 5,
+    teknologi: 4,
+    description: 'Petani mandiri dengan lahan 2 hektar di Sukabumi',
+    details: {
+      lokasi: 'Desa Cisaat, Sukabumi',
+      sertifikasi: 'Organik Indonesia',
+      metode: 'Pertanian organik tradisional',
+      pengalaman: '12 tahun bertani padi organik'
+    }
+  },
+  {
+    name: 'Kelompok Tani Maju Bersama',
+    konsistensi: 2.5,
+    reliabilitas: 7,
+    harga: 16500,
+    kapasitas: 20,
+    teknologi: 6,
+    description: 'Koperasi 25 petani dengan total lahan 15 hektar',
+    details: {
+      lokasi: 'Kecamatan Cigombong, Bogor',
+      sertifikasi: 'Organik Indonesia & SNI',
+      metode: 'SRI (System of Rice Intensification)',
+      pengalaman: '8 tahun sebagai kelompok tani'
+    }
+  },
+  {
+    name: 'Petani Kontrak PT Organik Nusantara',
+    konsistensi: 1.8,
+    reliabilitas: 9,
+    harga: 17000,
+    kapasitas: 35,
+    teknologi: 7,
+    description: 'Petani dengan kontrak eksklusif dan pendampingan teknis',
+    details: {
+      lokasi: 'Karawang dan Subang',
+      sertifikasi: 'Organik Indonesia, USDA Organic',
+      metode: 'Pertanian presisi dengan monitoring',
+      pengalaman: '6 tahun kemitraan kontrak'
+    }
+  },
+  {
+    name: 'Smart Farm Cianjur',
+    konsistensi: 1.2,
+    reliabilitas: 8,
+    harga: 19000,
+    kapasitas: 15,
+    teknologi: 9,
+    description: 'Pertanian modern dengan sistem IoT dan otomasi',
+    details: {
+      lokasi: 'Cianjur Selatan',
+      sertifikasi: 'Organik Indonesia, EU Organic',
+      metode: 'Smart farming dengan sensor IoT',
+      pengalaman: '4 tahun teknologi pertanian'
+    }
+  }
+]
