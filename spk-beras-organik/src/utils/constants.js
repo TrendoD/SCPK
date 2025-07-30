@@ -112,10 +112,14 @@ export const WEIGHT_PRESETS = {
   petani: {
     default: {
       name: 'Fokus Stabilitas Pendapatan',
+      description: 'Prioritas pada konsistensi harga dan kredibilitas pembayaran',
+      icon: '💰',
       weights: PETANI_DEFAULT_WEIGHTS
     },
     quality: {
       name: 'Fokus Kredibilitas & Transparansi',
+      description: 'Utamakan pembeli terpercaya dengan harga transparan',
+      icon: '🤝',
       weights: {
         stabilitas: 20,
         kredibilitas: 35,
@@ -126,6 +130,8 @@ export const WEIGHT_PRESETS = {
     },
     efficiency: {
       name: 'Fokus Efisiensi Distribusi',
+      description: 'Seimbangkan volume, jarak, dan stabilitas harga',
+      icon: '🚚',
       weights: {
         stabilitas: 25,
         kredibilitas: 20,
@@ -133,15 +139,31 @@ export const WEIGHT_PRESETS = {
         jarak: 25,
         transparansi: 5
       }
+    },
+    volume: {
+      name: 'Fokus Volume Besar',
+      description: 'Prioritaskan pembeli dengan kapasitas pembelian tinggi',
+      icon: '📦',
+      weights: {
+        stabilitas: 20,
+        kredibilitas: 25,
+        volume: 40,
+        jarak: 10,
+        transparansi: 5
+      }
     }
   },
   pedagang: {
     default: {
-      name: 'Fokus Efisiensi Distribusi',
+      name: 'Fokus Keseimbangan',
+      description: 'Seimbangkan kualitas, reliabilitas, dan harga',
+      icon: '⚖️',
       weights: PEDAGANG_DEFAULT_WEIGHTS
     },
     quality: {
-      name: 'Fokus Kualitas & Reliabilitas',
+      name: 'Fokus Kualitas Premium',
+      description: 'Utamakan konsistensi kualitas dan reliabilitas supply',
+      icon: '⭐',
       weights: {
         konsistensi: 35,
         reliabilitas: 35,
@@ -152,12 +174,26 @@ export const WEIGHT_PRESETS = {
     },
     cost: {
       name: 'Fokus Harga Kompetitif',
+      description: 'Prioritaskan harga terbaik dengan reliabilitas memadai',
+      icon: '💸',
       weights: {
         konsistensi: 20,
         reliabilitas: 25,
         harga: 40,
         kapasitas: 10,
         teknologi: 5
+      }
+    },
+    tech: {
+      name: 'Fokus Teknologi Modern',
+      description: 'Utamakan supplier dengan adopsi teknologi tinggi',
+      icon: '🚀',
+      weights: {
+        konsistensi: 20,
+        reliabilitas: 20,
+        harga: 20,
+        kapasitas: 15,
+        teknologi: 25
       }
     }
   }

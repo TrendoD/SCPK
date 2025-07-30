@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import WeightSlider from './common/WeightSlider'
 import DataInputForm from './common/DataInputForm'
 import DataPreview from './common/DataPreview'
 import ResultCardOptimized from './common/ResultCardOptimized'
 import { calculateSPK } from '../utils/spkEngine'
-import { PEDAGANG_CRITERIA, PEDAGANG_DEFAULT_WEIGHTS, SAMPLE_SUPPLIERS } from '../utils/constants'
+import { PEDAGANG_CRITERIA, PEDAGANG_DEFAULT_WEIGHTS, SAMPLE_SUPPLIERS, WEIGHT_PRESETS } from '../utils/constants'
 import './SPKPageOptimized.css'
 
 function PedagangPage() {
@@ -17,6 +17,7 @@ function PedagangPage() {
   const [isCalculating, setIsCalculating] = useState(false)
   const [sampleDataLoaded, setSampleDataLoaded] = useState(false)
   const [selectedSupplierDetails, setSelectedSupplierDetails] = useState(null)
+  const [selectedPreset, setSelectedPreset] = useState('default')
 
   const handleAddSupplier = (supplierData) => {
     setSuppliers([...suppliers, { id: Date.now(), ...supplierData }])
@@ -28,6 +29,12 @@ function PedagangPage() {
 
   const handleWeightChange = (criterion, value) => {
     setWeights({ ...weights, [criterion]: value })
+    setSelectedPreset('custom')
+  }
+
+  const handlePresetSelect = (presetKey) => {
+    setSelectedPreset(presetKey)
+    setWeights(WEIGHT_PRESETS.pedagang[presetKey].weights)
   }
 
   const handleCalculate = async () => {
@@ -134,14 +141,28 @@ function PedagangPage() {
 
           <section className="weight-section">
             <h2>2. Atur Bobot Kriteria</h2>
-            <div className="weight-preset">
-              <p>Gunakan bobot rekomendasi atau atur sendiri:</p>
-              <button 
-                className="preset-button"
-                onClick={() => setWeights(PEDAGANG_DEFAULT_WEIGHTS)}
-              >
-                Gunakan Bobot Default
-              </button>
+            <div className="weight-preset-section">
+              <p className="preset-intro">Pilih preset bobot atau atur sendiri:</p>
+              <div className="preset-grid">
+                {Object.entries(WEIGHT_PRESETS.pedagang).map(([key, preset]) => (
+                  <div 
+                    key={key}
+                    className={`preset-card ${selectedPreset === key ? 'active' : ''}`}
+                    onClick={() => handlePresetSelect(key)}
+                  >
+                    <div className="preset-icon">{preset.icon}</div>
+                    <h4 className="preset-name">{preset.name}</h4>
+                    <p className="preset-description">{preset.description}</p>
+                  </div>
+                ))}
+                {selectedPreset === 'custom' && (
+                  <div className="preset-card active custom">
+                    <div className="preset-icon">⚙️</div>
+                    <h4 className="preset-name">Custom</h4>
+                    <p className="preset-description">Bobot disesuaikan manual</p>
+                  </div>
+                )}
+              </div>
             </div>
             
             <div className="weight-sliders">
