@@ -6,7 +6,7 @@ import DataPreview from './common/DataPreview'
 import ResultCard from './common/ResultCard'
 import { calculateSPK } from '../utils/spkEngine'
 import { PEDAGANG_CRITERIA, PEDAGANG_DEFAULT_WEIGHTS } from '../utils/constants'
-import './SPKPage.css'
+import './SPKPageOptimized.css'
 
 function PedagangPage() {
   const navigate = useNavigate()

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import './WeightSlider.css'
+import './WeightSliderOptimized.css'
 
 function WeightSlider({ label, value, onChange, description }) {
   const [isDragging, setIsDragging] = useState(false)

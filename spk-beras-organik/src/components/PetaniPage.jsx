@@ -6,7 +6,7 @@ import DataPreview from './common/DataPreview'
 import ResultCard from './common/ResultCard'
 import { calculateSPK } from '../utils/spkEngine'
 import { PETANI_CRITERIA, PETANI_DEFAULT_WEIGHTS } from '../utils/constants'
-import './SPKPage.css'
+import './SPKPageOptimized.css'
 
 function PetaniPage() {
   const navigate = useNavigate()

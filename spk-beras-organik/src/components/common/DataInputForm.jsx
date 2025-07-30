@@ -129,11 +129,6 @@ function DataInputForm({ criteria, onSubmit, userType }) {
 
   return (
     <form className="data-input-form" onSubmit={handleSubmit} ref={formRef}>
-      <div className="form-header">
-        <h3>Tambah Data {entityName}</h3>
-        <p>Lengkapi informasi {entityName.toLowerCase()} untuk evaluasi</p>
-      </div>
-      
       <div className={getFieldClass('name', formData.name)}>
         <div className="floating-input">
           <input

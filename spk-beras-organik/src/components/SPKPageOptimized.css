@@ -1,0 +1,479 @@
+/* Optimized SPK Page - Better Performance */
+
+.spk-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--rice-cream) 0%, var(--rice-white) 50%, var(--rice-gold) 100%);
+  position: relative;
+  overflow-x: hidden;
+  /* Remove complex pattern and atmospheric animation */
+}
+
+/* Simplified header without heavy animations */
+.spk-header {
+  background: linear-gradient(135deg, var(--emerald-field) 0%, var(--emerald-dark) 100%);
+  color: white;
+  padding: 80px 40px 60px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(6, 214, 160, 0.2);
+  margin-bottom: 40px;
+  /* Remove heavy background animations */
+}
+
+.spk-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  /* Simplified, no animation */
+}
+
+.back-button {
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(6, 214, 160, 0.2);
+  color: var(--emerald-field);
+  padding: 12px 24px;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  /* Simplified transition */
+}
+
+.back-button:hover {
+  transform: translateX(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.spk-header h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 16px;
+  font-weight: 800;
+  color: #000000 !important;
+  /* Remove text-shadow for better performance */
+}
+
+.spk-header p {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  opacity: 1;
+  font-weight: 700;
+  color: #000000 !important;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Optimized sections */
+section {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  position: relative;
+  /* Remove reveal animation for smoother loading */
+}
+
+section h2 {
+  color: var(--text-primary);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-weight: 600;
+  position: relative;
+  padding-left: 50px;
+}
+
+section h2::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 50%;
+  background: var(--emerald-field);
+  border-radius: 2px;
+  /* Remove pulsing animation */
+}
+
+section h2::after {
+  content: counter(section-counter);
+  counter-increment: section-counter;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background: var(--primary-emerald);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(6, 214, 160, 0.2);
+}
+
+.spk-container {
+  counter-reset: section-counter;
+}
+
+/* Simplified input section */
+.input-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--border-radius-lg);
+  padding: 40px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+  border: 1px solid rgba(6, 214, 160, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  /* Remove backdrop-filter and complex animations */
+}
+
+.input-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.added-buyers {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.buyer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.buyer-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(6, 214, 160, 0.1);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  /* Simplified styling */
+}
+
+.buyer-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(6, 214, 160, 0.1);
+  border-color: var(--primary-emerald);
+}
+
+.buyer-item span {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.buyer-item button {
+  background: #E74C3C;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  /* Simplified button */
+}
+
+.buyer-item button:hover {
+  background: #C0392B;
+  transform: scale(1.02);
+}
+
+/* Optimized weight section */
+.weight-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--border-radius-lg);
+  padding: 40px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+  border: 1px solid rgba(6, 214, 160, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.weight-section:hover {
+  transform: translateY(-2px);
+}
+
+.weight-preset {
+  margin-bottom: 24px;
+}
+
+.weight-preset p {
+  margin-bottom: 12px;
+  color: var(--text-secondary);
+}
+
+.preset-button {
+  background: var(--emerald-dark);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.preset-button:hover {
+  background: var(--primary-emerald);
+  transform: translateY(-1px);
+}
+
+.weight-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.weight-total {
+  margin-top: 24px;
+  padding: 20px;
+  background: rgba(248, 255, 229, 0.8);
+  border-radius: var(--border-radius);
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: 1px solid var(--emerald-light);
+  color: var(--text-primary);
+  /* Simplified styling */
+}
+
+/* Optimized preview section */
+.preview-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--border-radius-lg);
+  padding: 40px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+  border: 1px solid rgba(6, 214, 160, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.preview-section:hover {
+  transform: translateY(-2px);
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+/* Optimized calculate button */
+.calculate-button {
+  background: linear-gradient(135deg, var(--emerald-field) 0%, var(--emerald-dark) 100%);
+  color: white;
+  border: none;
+  padding: 20px 60px;
+  border-radius: var(--border-radius);
+  font-size: 1.2rem;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(6, 214, 160, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  /* Simplified without complex animations */
+}
+
+.calculate-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(6, 214, 160, 0.35);
+}
+
+.calculate-button:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.calculate-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Results section */
+.results-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.method-comparison {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+  border: 1px solid var(--emerald-light);
+}
+
+.comparison-table {
+  overflow-x: auto;
+  margin-top: 16px;
+}
+
+.comparison-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.comparison-table th {
+  background: var(--primary-yellow);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.comparison-table tr:hover {
+  background: #f9f9f9;
+}
+
+.reset-button {
+  background: #FF9800;
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: var(--border-radius-sm);
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.reset-button:hover {
+  background: #F57C00;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .spk-header {
+    padding: 60px 20px 40px;
+  }
+  
+  .spk-header h1 {
+    font-size: 2rem;
+  }
+  
+  .back-button {
+    position: static;
+    margin-bottom: 16px;
+    align-self: flex-start;
+  }
+  
+  section {
+    margin: 0 auto 30px;
+    padding: 0 16px;
+  }
+  
+  .input-section,
+  .weight-section,
+  .preview-section {
+    padding: 24px;
+  }
+  
+  .results-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .calculate-button {
+    padding: 16px 40px;
+    font-size: 1.1rem;
+  }
+  
+  section h2 {
+    font-size: 1.5rem;
+    padding-left: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .spk-header {
+    padding: 40px 16px 30px;
+  }
+  
+  .input-section,
+  .weight-section,
+  .preview-section {
+    padding: 20px;
+  }
+  
+  .calculate-button {
+    padding: 14px 32px;
+    font-size: 1rem;
+  }
+}
+
+/* Performance optimizations */
+.spk-container * {
+  box-sizing: border-box;
+}
+
+/* Reduce repaints */
+.input-section,
+.weight-section,
+.preview-section {
+  will-change: transform;
+  contain: layout style;
+}
+
+/* GPU acceleration for smooth animations */
+.calculate-button,
+.back-button,
+.buyer-item,
+.preset-button,
+.reset-button {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Optimize text rendering */
+body {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove animations on reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
