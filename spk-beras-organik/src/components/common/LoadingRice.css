@@ -1,0 +1,141 @@
+/* Rice Loading Animation Component */
+
+.loading-rice-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  gap: 24px;
+}
+
+.rice-loading {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.rice-grain {
+  width: 16px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--rice-gold), var(--rice-cream));
+  border-radius: 50% / 100%;
+  animation: grainDance 1.4s ease-in-out infinite;
+  box-shadow: 
+    0 4px 8px rgba(141, 110, 99, 0.2),
+    inset 0 -2px 4px rgba(141, 110, 99, 0.1),
+    inset 0 2px 4px rgba(255, 255, 255, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.rice-grain::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 40%;
+  background: rgba(141, 110, 99, 0.2);
+  border-radius: 1px;
+}
+
+.rice-grain:nth-child(1) { 
+  animation-delay: 0s;
+  transform: rotate(-15deg);
+}
+
+.rice-grain:nth-child(2) { 
+  animation-delay: 0.2s;
+  transform: rotate(0deg);
+}
+
+.rice-grain:nth-child(3) { 
+  animation-delay: 0.4s;
+  transform: rotate(15deg);
+}
+
+@keyframes grainDance {
+  0%, 60%, 100% {
+    transform: translateY(0) rotate(var(--rotation, 0deg));
+  }
+  30% {
+    transform: translateY(-24px) rotate(calc(var(--rotation, 0deg) + 180deg));
+  }
+}
+
+.loading-message {
+  color: var(--text-secondary);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  text-align: center;
+  opacity: 0.8;
+  animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Alternative Loading Styles */
+.loading-rice-container.large .rice-grain {
+  width: 24px;
+  height: 48px;
+  gap: 16px;
+}
+
+.loading-rice-container.inline {
+  flex-direction: row;
+  padding: 16px;
+  gap: 16px;
+}
+
+.loading-rice-container.inline .rice-grain {
+  width: 12px;
+  height: 24px;
+}
+
+/* Full Screen Loading */
+.loading-rice-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  animation: overlayFadeIn 0.3s ease-out;
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Dark Mode Adjustments */
+[data-theme="dark"] .rice-grain {
+  background: linear-gradient(135deg, var(--rice-gold), var(--soil-brown));
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .rice-grain::before {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .loading-rice-overlay {
+  background: rgba(18, 18, 18, 0.95);
+}
