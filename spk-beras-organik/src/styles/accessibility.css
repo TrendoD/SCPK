@@ -190,37 +190,6 @@ button[aria-pressed="true"] {
   }
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-yellow: #2A2D22;
-    --primary-emerald: #08E6B0;
-    --emerald-light: #08E6B020;
-    --emerald-dark: #06C599;
-    --text-primary: #E8F0FA;
-    --text-secondary: #B8C9DA;
-    --white: #1A1B1E;
-  }
-  
-  body {
-    background-color: #0F1011;
-  }
-  
-  input,
-  textarea,
-  select {
-    background-color: #1A1B1E;
-    color: #E8F0FA;
-    border-color: #2A2D2E;
-  }
-  
-  .data-input-form,
-  .weight-slider,
-  .result-card {
-    background-color: #1A1B1E;
-    border-color: #2A2D2E;
-  }
-}
 
 /* Touch Target Sizing */
 button,

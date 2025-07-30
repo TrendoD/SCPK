@@ -74,19 +74,6 @@
   --leading-loose: 2;
 }
 
-/* Enhanced Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-yellow: #2A2D22;
-    --primary-emerald: #04B587;
-    --emerald-light: #04B58720;
-    --emerald-dark: #03A076;
-    --text-primary: #E8F0FA;
-    --text-secondary: #A8B9CA;
-    --white: #1A1B1E;
-    --shadow: rgba(4, 181, 135, 0.2);
-  }
-}
 
 /* Enhanced Body Styles */
 body {

@@ -236,25 +236,6 @@
   }
 }
 
-/* Dark Mode Support */
-[data-theme="dark"] .toast {
-  background: linear-gradient(135deg, 
-    rgba(30, 30, 30, 0.95) 0%, 
-    rgba(40, 40, 40, 0.9) 100%);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="dark"] .toast-message {
-  color: var(--text-primary-dark);
-}
-
-[data-theme="dark"] .toast-close {
-  color: var(--text-secondary-dark);
-}
-
-[data-theme="dark"] .toast-close:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {

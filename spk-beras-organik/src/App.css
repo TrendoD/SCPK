@@ -1,3 +1,6 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -124,41 +127,6 @@
   background-color: transparent;
 }
 
-/* Dark Mode Color Scheme */
-[data-theme="dark"] {
-  --rice-gold: #3E342F;
-  --rice-cream: #2C2B22;
-  --rice-white: #1F1E1A;
-  --emerald-field: #04B587;
-  --emerald-light: #04B58715;
-  --emerald-dark: #03A076;
-  --emerald-shadow: #028A63;
-  --leaf-green: #689F38;
-  --soil-brown: #6D4C41;
-  --earth-dark: #795548;
-  --sunrise-orange: #FF8A65;
-  --sunset-amber: #FF7043;
-  --water-blue: #42A5F5;
-  --sky-blue: #64B5F6;
-  --cloud-gray: #263238;
-  --text-primary: #E8F0FA;
-  --text-secondary: #A8B9CA;
-  --white: #121212;
-  --shadow: rgba(4, 181, 135, 0.2);
-  
-  /* Dark mode specific */
-  --glass-bg: rgba(18, 18, 18, 0.85);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  
-  /* Pattern adjustments */
-  --pattern-rice-light: rgba(62, 52, 47, 0.3);
-  --pattern-rice-dark: rgba(255, 255, 255, 0.05);
-  --pattern-leaf: rgba(104, 159, 56, 0.1);
-}
-
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 body {
   font-family: var(--font-secondary);

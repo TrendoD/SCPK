@@ -122,20 +122,3 @@
     opacity: 1;
   }
 }
-
-/* Dark Mode Adjustments */
-[data-theme="dark"] .rice-grain {
-  background: linear-gradient(135deg, var(--rice-gold), var(--soil-brown));
-  box-shadow: 
-    0 4px 8px rgba(0, 0, 0, 0.4),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.2),
-    inset 0 2px 4px rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="dark"] .rice-grain::before {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="dark"] .loading-rice-overlay {
-  background: rgba(18, 18, 18, 0.95);
-}
