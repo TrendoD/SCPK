@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import WeightSlider from './common/WeightSlider'
 import DataInputForm from './common/DataInputForm'
 import DataPreview from './common/DataPreview'
-import ResultCard from './common/ResultCard'
+import ResultCardOptimized from './common/ResultCardOptimized'
 import { calculateSPK } from '../utils/spkEngine'
 import { PEDAGANG_CRITERIA, PEDAGANG_DEFAULT_WEIGHTS, SAMPLE_SUPPLIERS } from '../utils/constants'
 import './SPKPageOptimized.css'
@@ -192,7 +192,7 @@ function PedagangPage() {
           <h2>Hasil Rekomendasi</h2>
           <div className="results-grid">
             {results.rankings.map((result, index) => (
-              <ResultCard
+              <ResultCardOptimized
                 key={result.id}
                 rank={index + 1}
                 data={result}
